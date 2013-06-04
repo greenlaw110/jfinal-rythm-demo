@@ -1,0 +1,59 @@
+@args int currentPage, int totalPage, String actionUrl, String urlParas
+@return((totalPage <= 0) || (currentPage > totalPage))
+@{
+    int startPage = currentPage - 4;
+    if (startPage < 1) {
+        startPage = 1;
+    }
+    int endPage = currentPage + 4;
+    if (endPage > totalPage) {
+        endPage = totalPage;
+    }
+    
+    if (currentPage <= 8) {
+        startPage = 1;
+    }
+
+    if(totalPage - currentPage < 8){
+        endPage = totalPage;
+    }
+}
+
+@def String _url(Integer pageId) {
+    return actionUrl + pageId + urlParas;
+}
+<div class="pagination">
+        
+        @if (currentPage == 1) {
+            <span class="disabled prev_page">上页</span>
+        } else {
+            <a href="@_url(currentPage - 1)" class="prev_page">上页</a>
+        }
+        
+        @if (currentPage > 8) {
+            <a href="@_url(1)">1</a>
+            <a href="@_url(2)">2</a>
+            <span class="gap">…</span>
+        }
+        
+        @for(int i = startPage; i <= endPage; ++i) {
+            @if (currentPage == i)
+                <span class="current">@i</span>
+            } else {
+                <a href="@_url(i)">#{i}</a>
+            }
+        }
+        
+        @if ((totalPage - currentPage) >= 8) {
+            <span class="gap">…</span>
+            <a href="@_url(totalPage - 1)">@(totalPage - 1)</a>
+            <a href="@_url(totalPage)">@totalPage</a>
+        }
+        
+        @if (currentPage == totalPage) {
+            <span class="disabled next_page">下页</span>
+        } else {
+            <a href="@_url(currentPage + 1)" class="next_page" rel="next">下页</a>
+        }
+        
+</div>

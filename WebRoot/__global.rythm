@@ -1,0 +1,1 @@
+@import com.demo.blog.*, com.jfinal.plugin.activerecord.*

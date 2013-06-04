@@ -1,0 +1,9 @@
+@extends(common._layout)
+@args Blog blog
+<h1>Blog管理 ---&gt; 修改Blog
+</h1>
+<div class="form_box">
+	<form action="/blog/update" method="post">
+		@_form()
+	</form>
+</div>
