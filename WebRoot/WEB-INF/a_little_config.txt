@@ -4,4 +4,3 @@ password = aaaaaa
 devMode = true
 
 rythm.home.template=../..
-rythm.home.tmp=c:/temp
